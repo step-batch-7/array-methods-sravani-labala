@@ -16,6 +16,9 @@ typedef struct
   int length;
 } Array;
 
+Array *create_array(int length);
+Array *create_and_initialize_array(int *array, int length);
+
 Array *map(Array *src, Mapper mapper);
 Array *filter(Array *src, Predicate predicate);
 int reduce(Array *src, int init, Reducer reducer);
