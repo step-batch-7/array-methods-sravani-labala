@@ -1,11 +1,7 @@
 #ifndef __ARRAY_VOID_H
 #define __ARRAY_VOID_H
 
-typedef enum
-{
-  False,
-  True
-} Bool;
+#include "array.h"
 
 typedef void *Object;
 

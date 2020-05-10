@@ -20,6 +20,16 @@ ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper)
   return array;
 }
 
+ArrayVoid_ptr create_and_initialize_void_array(Object *src, int length)
+{
+  ArrayVoid_ptr array_void = create_array_void(length);
+  for (int index = 0; index < length; index++)
+  {
+    array_void->array[index] = src[index];
+  }
+  return array_void;
+}
+
 ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate)
 {
   Object temp[src->length];
@@ -33,12 +43,7 @@ ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate)
       count++;
     }
   }
-  ArrayVoid_ptr array = create_array_void(count);
-  for (int index = 0; index < count; index++)
-  {
-    array->array[index] = temp[index];
-  }
-  return array;
+  return create_and_initialize_void_array(temp, count);
 }
 
 Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer)
