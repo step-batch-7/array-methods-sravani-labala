@@ -50,3 +50,12 @@ Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer)
   }
   return context;
 }
+
+void display_array_void(ArrayVoid_ptr array, Displayer displayer)
+{
+  for (int index = 0; index < array->length; index++)
+  {
+    (*displayer)(array->array[index]);
+  }
+  printf("\n");
+}

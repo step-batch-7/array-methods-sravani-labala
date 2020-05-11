@@ -45,13 +45,9 @@ Object square_void(Object number)
   return result;
 }
 
-void display_number_array(ArrayVoid_ptr array)
+void display_number_array(Object value)
 {
-  for (int index = 0; index < array->length; index++)
-  {
-    printf("%d ", *(int *)array->array[index]);
-  }
-  printf("\n");
+  printf("%d ", *(int *)value);
 }
 
 int main(void)
@@ -87,11 +83,11 @@ int main(void)
 
   ArrayVoid_ptr empty_array_void = create_array_void(0);
 
-  display_number_array(array_void);                                 //displaying the array_void_elements
-  display_number_array(map_void(array_void, square_void));          //testing map with some elements in array_void
-  display_number_array(map_void(empty_array_void, square_void));    //testing map with empty array_void
-  display_number_array(filter_void(array_void, is_odd_void));       //testing filter with some elements in array_void
-  display_number_array(filter_void(empty_array_void, is_odd_void)); //testing filter with empty array_void
+  display_array_void(array_void, display_number_array);                                 //displaying the array_void_elements
+  display_array_void(map_void(array_void, square_void), display_number_array);          //testing map with some elements in array_void
+  display_array_void(map_void(empty_array_void, square_void), display_number_array);    //testing map with empty array_void
+  display_array_void(filter_void(array_void, is_odd_void), display_number_array);       //testing filter with some elements in array_void
+  display_array_void(filter_void(empty_array_void, is_odd_void), display_number_array); //testing filter with empty array_void
 
   int *context = malloc(sizeof(int));
   *context = 0;
