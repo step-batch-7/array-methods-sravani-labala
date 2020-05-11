@@ -57,7 +57,7 @@ int *create_int(int value)
   return int_ptr;
 }
 
-int main(void)
+void test_array_methods()
 {
   int stack_array[] = {1, 2, 3, 4, 5};
   int length = sizeof(stack_array) / sizeof(int);
@@ -71,16 +71,17 @@ int main(void)
   display_array(filter(empty_array, &is_odd));  //testing filter with empty array
   printf("%d\n", reduce(array, 0, &sum));       //testing reduce with some elements in array
   printf("%d\n", reduce(empty_array, 0, &sum)); //testing reduce with empty array
+}
 
-  printf("---void array's---\n");
-
+void test_array_void_methods()
+{
   ArrayVoid_ptr array_void = create_array_void(5);
 
-  array_void->array[0] = create_int(1);
-  array_void->array[1] = create_int(2);
-  array_void->array[2] = create_int(3);
-  array_void->array[3] = create_int(4);
-  array_void->array[4] = create_int(5);
+  int values[] = {1, 2, 3, 4, 5};
+  for (int i = 0; i < 5; i++)
+  {
+    array_void->array[i] = create_int(values[i]);
+  }
 
   ArrayVoid_ptr empty_array_void = create_array_void(0);
 
@@ -95,6 +96,12 @@ int main(void)
 
   printf("%d\n", *(int *)reduce_void(array_void, context, &add_void));       //testing reduce with some elements in array_void
   printf("%d\n", *(int *)reduce_void(empty_array_void, context, &add_void)); //testing reduce with empty array_void
+}
 
+int main(void)
+{
+  test_array_methods();
+  printf("\n");
+  test_array_void_methods();
   return 0;
 }
