@@ -25,4 +25,6 @@ Array_ptr map(Array_ptr src, Mapper mapper);
 Array_ptr filter(Array_ptr src, Predicate predicate);
 int reduce(Array_ptr src, int init, Reducer reducer);
 
+void display_array(Array_ptr array);
+
 #endif

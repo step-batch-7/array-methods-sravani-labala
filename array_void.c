@@ -51,6 +51,16 @@ Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer)
   return context;
 }
 
+void display_number(Object value)
+{
+  printf("%d ", *(int *)value);
+}
+
+void display_character(Object value)
+{
+  printf("%c ", *(char *)value);
+}
+
 void display_array_void(ArrayVoid_ptr array, Displayer displayer)
 {
   for (int index = 0; index < array->length; index++)
@@ -58,4 +68,28 @@ void display_array_void(ArrayVoid_ptr array, Displayer displayer)
     (*displayer)(array->array[index]);
   }
   printf("\n");
+}
+
+Object create_number(Object array, int inc)
+{
+  Object int_ptr = malloc(sizeof(int));
+  *(int *)int_ptr = *((int *)array + inc);
+  return int_ptr;
+}
+
+Object create_character(Object array, int inc)
+{
+  Object char_ptr = malloc(sizeof(char));
+  *(char *)char_ptr = *((char *)array + inc);
+  return char_ptr;
+}
+
+ArrayVoid_ptr create(Object array, int length, typeMalloc type)
+{
+  ArrayVoid_ptr array_void = create_array_void(length);
+  for (int i = 0; i < length; i++)
+  {
+    array_void->array[i] = (*type)(array, i);
+  }
+  return array_void;
 }

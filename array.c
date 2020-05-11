@@ -54,3 +54,12 @@ int reduce(Array_ptr src, int init, Reducer reducer)
   }
   return context;
 }
+
+void display_array(Array_ptr array)
+{
+  for (int index = 0; index < array->length; index++)
+  {
+    printf("%d ", array->array[index]);
+  }
+  printf("\n");
+}
